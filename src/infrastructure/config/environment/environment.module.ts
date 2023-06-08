@@ -7,10 +7,10 @@ import { validate } from './environment.validation';
   imports: [
     ConfigModule.forRoot({
       envFilePath: 'configs/env/local.env',
-      ignoreEnvFile:
-        process.env.NODE_ENV === 'local' || process.env.NODE_ENV === 'test'
-          ? false
-          : true,
+      ignoreEnvFile: !(
+        process.env['NODE_ENV'] === 'local' ||
+        process.env['NODE_ENV'] === 'test'
+      ),
       isGlobal: true,
       validate,
     }),

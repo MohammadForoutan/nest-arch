@@ -1,4 +1,6 @@
-module.exports = {
+const { init } = require('@fullstacksjs/eslint-config/init');
+
+module.exports = init({
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
@@ -21,5 +23,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'no-useless-constructor': 'off',
+    'dot-notation': 'off',
+    'fp/no-let': 'off',
   },
-};
+});

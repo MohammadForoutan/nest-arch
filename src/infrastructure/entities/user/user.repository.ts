@@ -10,6 +10,7 @@ export class UserRepository implements IUserRepository {
     @InjectRepository(UserModel)
     private readonly userRepository: Repository<UserModel>,
   ) {}
+
   findAll() {
     return this.userRepository.find();
   }

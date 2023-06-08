@@ -9,26 +9,16 @@ import {
 
 @Entity()
 export class UserModel implements IUserModel {
-  @PrimaryGeneratedColumn({
-    type: 'bigint',
-    name: 'user_id',
-  })
+  @PrimaryGeneratedColumn({ type: 'bigint', name: 'user_id' })
   id: number;
 
-  @Column({
-    nullable: false,
-  })
+  @Column()
   username: string;
 
-  @Column({
-    name: 'email',
-    nullable: false,
-  })
+  @Column()
   email: string;
 
-  @Column({
-    nullable: false,
-  })
+  @Column()
   password: string;
 
   @CreateDateColumn({ type: 'timestamp' })

@@ -1,4 +1,4 @@
-import { UserModel } from 'src/infrastructure/entities/user/user.model';
+import { UserModel } from '@infrastructure';
 
 export interface IUserController {
   findAll: () => Promise<UserModel[]>;

@@ -14,9 +14,9 @@ export const getTypeOrmModuleOptions = (
     password: config.getDatabasePassword(),
     database: config.getDatabaseName(),
     // entities: ['../../../app/**/*.model.ts'],
-    autoLoadEntities: true,
+    autoLoadEntities: true, // add entity to modules
     synchronize: true,
-    schema: process.env.DATABASE_SCHEMA,
+    schema: process.env['DATABASE_SCHEMA'],
     migrationsRun: true,
     // migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
     // cli: {
