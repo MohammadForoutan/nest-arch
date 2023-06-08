@@ -10,9 +10,9 @@ import {
 @Entity()
 export class UserModel implements IUserModel {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'user_id' })
-  id: number;
+  readonly id: number;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
@@ -22,7 +22,7 @@ export class UserModel implements IUserModel {
   password: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createDate: Date;
+  readonly createDate: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
   updateDate: Date;

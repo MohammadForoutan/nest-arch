@@ -6,3 +6,5 @@ export * from './repositories';
 export * from './exceptions';
 export * from './logging';
 export * from './models';
+export * from './serializations';
+export * from './dtos';
