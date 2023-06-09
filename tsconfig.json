@@ -1,4 +1,5 @@
 {
+  "extends": "@fullstacksjs/tsconfig/esm",
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
@@ -18,8 +19,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@domain": ["src/domain/index.ts"],
-      "@infrastructure": ["./src/infrastructure/index.ts"]
+      "@domain": ["src/domain"],
+      "@infrastructure": ["src/infrastructure"]
     }
   }
 }

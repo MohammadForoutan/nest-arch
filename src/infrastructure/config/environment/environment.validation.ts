@@ -7,7 +7,8 @@ import {
   validateSync,
 } from 'class-validator';
 
-enum Environment {
+// eslint-disable-next-line no-shadow
+enum EnvironmentStats {
   Development = 'development',
   Production = 'production',
   Local = 'local',
@@ -15,30 +16,39 @@ enum Environment {
 }
 
 class EnvironmentVariables {
-  @IsEnum(Environment)
-  NODE_ENV: Environment;
+  @IsEnum(EnvironmentStats)
+  NODE_ENV: EnvironmentStats;
 
   @IsString()
   JWT_SECRET: string;
+
   @IsString()
   JWT_EXPIRATION_TIME: string;
+
   @IsString()
   JWT_REFRESH_TOKEN_SECRET: string;
+
   @IsString()
   JWT_REFRESH_TOKEN_EXPIRATION_TIME: string;
 
   @IsString()
   DATABASE_HOST: string;
+
   @IsNumber()
   DATABASE_PORT: number;
+
   @IsString()
   DATABASE_USER: string;
+
   @IsString()
   DATABASE_PASSWORD: string;
+
   @IsString()
   DATABASE_NAME: string;
+
   @IsString()
   DATABASE_SCHEMA: string;
+
   @IsBoolean()
   DATABASE_SYNCHRONIZE: boolean;
 }
