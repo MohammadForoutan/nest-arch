@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { plainToClass } from 'class-transformer';
-import { UserModel } from '@infrastructure';
 import {
   CreateUserSerialization,
   FindAllUsersSerialization,

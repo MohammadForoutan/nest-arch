@@ -1,6 +1,5 @@
-import { IUserService } from '@domain';
+import { ICreateUserDto, IUserService } from '@domain';
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto';
 import { UserRepository } from '@infrastructure';
 
 @Injectable()
@@ -11,7 +10,7 @@ export class UserService implements IUserService {
     return this.userRepository.findAll();
   }
 
-  createOne(dto: CreateUserDto) {
+  createOne(dto: ICreateUserDto) {
     return this.userRepository.createOne(dto);
   }
 }
