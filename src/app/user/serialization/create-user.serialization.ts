@@ -1,13 +1,13 @@
-import { ICreateUserSerialization } from '@domain';
+import type { ICreateUserSerialization } from '@domain';
 import { Expose } from 'class-transformer';
 
 export class CreateUserSerialization implements ICreateUserSerialization {
   @Expose()
-  id: number;
+  declare id: number;
 
   @Expose()
-  username: string;
+  declare username: string;
 
   @Expose()
-  createDate: Date;
+  declare createDate: Date;
 }

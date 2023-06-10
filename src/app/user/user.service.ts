@@ -1,4 +1,4 @@
-import { ICreateUserDto, IUserService } from '@domain';
+import type { ICreateUserDto, IUserService } from '@domain';
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from '@infrastructure';
 

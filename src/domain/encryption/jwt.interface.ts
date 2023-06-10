@@ -3,10 +3,10 @@ export interface IJwtServicePayload {
 }
 
 export interface IJwtService {
-  checkToken(token: string): Promise<any>;
-  createToken(
+  checkToken: (token: string) => Promise<any>;
+  createToken: (
     payload: IJwtServicePayload,
     secret: string,
     expiresIn: string,
-  ): string;
+  ) => string;
 }

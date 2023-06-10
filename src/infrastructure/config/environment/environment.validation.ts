@@ -1,3 +1,5 @@
+import type { IDatabaseEnv, IJwtEnv } from '@domain';
+import { EnvironmentStats } from '@domain';
 import { plainToClass } from 'class-transformer';
 import {
   IsBoolean,
@@ -7,50 +9,42 @@ import {
   validateSync,
 } from 'class-validator';
 
-// eslint-disable-next-line no-shadow
-enum EnvironmentStats {
-  Development = 'development',
-  Production = 'production',
-  Local = 'local',
-  Test = 'test',
-}
-
-class EnvironmentVariables {
+class EnvironmentVariables implements IJwtEnv, IDatabaseEnv {
   @IsEnum(EnvironmentStats)
-  NODE_ENV: EnvironmentStats;
+  declare NODE_ENV: EnvironmentStats;
 
   @IsString()
-  JWT_SECRET: string;
+  declare JWT_SECRET: string;
 
   @IsString()
-  JWT_EXPIRATION_TIME: string;
+  declare JWT_EXPIRATION_TIME: string;
 
   @IsString()
-  JWT_REFRESH_TOKEN_SECRET: string;
+  declare JWT_REFRESH_TOKEN_SECRET: string;
 
   @IsString()
-  JWT_REFRESH_TOKEN_EXPIRATION_TIME: string;
+  declare JWT_REFRESH_TOKEN_EXPIRATION_TIME: string;
 
   @IsString()
-  DATABASE_HOST: string;
+  declare DATABASE_HOST: string;
 
   @IsNumber()
-  DATABASE_PORT: number;
+  declare DATABASE_PORT: number;
 
   @IsString()
-  DATABASE_USER: string;
+  declare DATABASE_USER: string;
 
   @IsString()
-  DATABASE_PASSWORD: string;
+  declare DATABASE_PASSWORD: string;
 
   @IsString()
-  DATABASE_NAME: string;
+  declare DATABASE_NAME: string;
 
   @IsString()
-  DATABASE_SCHEMA: string;
+  declare DATABASE_SCHEMA: string;
 
   @IsBoolean()
-  DATABASE_SYNCHRONIZE: boolean;
+  declare DATABASE_SYNCHRONIZE: boolean;
 }
 
 export function validate(config: Record<string, unknown>) {
@@ -64,5 +58,6 @@ export function validate(config: Record<string, unknown>) {
   if (errors.length > 0) {
     throw new Error(errors.toString());
   }
+
   return validatedConfig;
 }

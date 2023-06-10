@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserModel } from './user.model';
 import { Repository } from 'typeorm';
-import { ICreateUserDto, IUserRepository } from '@domain';
+import type { ICreateUserDto, IUserRepository } from '@domain';
 
 @Injectable()
 export class UserRepository implements IUserRepository {

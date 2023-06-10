@@ -1,3 +1,6 @@
-- [ ] add serialization
+- [x] add serialization
+- [x] add validation
 - [ ] add docker
 - [ ] generic repository to crud
+- [ ] add global types - (process.env)
+- [ ] add log system

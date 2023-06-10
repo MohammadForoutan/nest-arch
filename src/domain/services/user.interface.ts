@@ -1,7 +1,7 @@
-import { CreateUserDto } from 'src/app/user/dto';
-import { UserModel } from 'src/infrastructure/entities/user/user.model';
+import type { ICreateUserDto } from '../dtos';
+import type { IUserModel } from '../models';
 
 export interface IUserService {
-  findAll: () => Promise<UserModel[]>;
-  createOne: (dto: CreateUserDto) => Promise<UserModel>;
+  findAll: () => Promise<IUserModel[]>;
+  createOne: (dto: ICreateUserDto) => Promise<IUserModel>;
 }
