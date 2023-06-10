@@ -1,4 +1,4 @@
-import { IUserController } from '@domain';
+import type { IUserController } from '@domain';
 import {
   Body,
   ClassSerializerInterceptor,

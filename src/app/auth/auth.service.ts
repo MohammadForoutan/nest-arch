@@ -1,4 +1,4 @@
-import { IAuthService, IUserModel } from '@domain';
+import type { IAuthService, IUserModel } from '@domain';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
