@@ -1,11 +1,11 @@
 const { init } = require('@fullstacksjs/eslint-config/init');
 
 module.exports = init({
-  modules: {
-    typescript: {
-      parserProject: './tsconfig.json',
-      resolverProject: './tsconfig.json',
-    },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
+    sourceType: 'module',
   },
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint/eslint-plugin'],
