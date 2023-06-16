@@ -19,8 +19,6 @@ services:
       JWT_EXPIRATION_TIME: 1800
       JWT_REFRESH_TOKEN_SECRET: 7jML9q4-c!s0
       JWT_REFRESH_TOKEN_EXPIRATION_TIME: 86400
-    volumes:
-      - .:/app/src
     depends_on:
       - postgres
 
