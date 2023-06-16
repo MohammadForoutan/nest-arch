@@ -1,5 +1,5 @@
-import { IUserModel } from '../models';
+import type { IUserEntity } from '../models';
 
 export interface IAuthService {
-  login: () => IUserModel;
+  login: () => IUserEntity;
 }

@@ -1,16 +1,16 @@
-import { IFindAllUsersSerialization } from '@domain';
+import type { IFindAllUsersSerialization } from '@domain';
 import { Expose } from 'class-transformer';
 
 export class FindAllUsersSerialization implements IFindAllUsersSerialization {
   @Expose()
-  id: number;
+  declare id: number;
 
   @Expose()
-  username: string;
+  declare username: string;
 
   @Expose()
-  email: string;
+  declare email: string;
 
   @Expose()
-  createDate: Date;
+  declare createDate: Date;
 }

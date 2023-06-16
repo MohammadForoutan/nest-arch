@@ -1,4 +1,4 @@
-import { IAuthController } from '@domain';
+import type { IAuthController } from '@domain';
 import { Controller } from '@nestjs/common';
 
 @Controller('auth')

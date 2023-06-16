@@ -1,5 +1,5 @@
-import { CreateUserDto } from 'src/app/user/dto';
-import {
+import type { CreateUserDto } from 'src/app/user/dto';
+import type {
   ICreateUserSerialization,
   IFindAllUsersSerialization,
 } from '../serializations';

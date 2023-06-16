@@ -1,4 +1,4 @@
-import { IUserModel } from '@domain';
+import type { IUserEntity } from '@domain';
 import {
   Column,
   CreateDateColumn,
@@ -8,22 +8,22 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class UserModel implements IUserModel {
+export class UserEntity implements IUserEntity {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'user_id' })
-  readonly id: number;
+  declare readonly id: number;
 
   @Column({ unique: true })
-  username: string;
+  declare username: string;
 
   @Column()
-  email: string;
+  declare email: string;
 
   @Column()
-  password: string;
+  declare password: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  readonly createDate: Date;
+  declare readonly createDate: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updateDate: Date;
+  declare updateDate: Date;
 }

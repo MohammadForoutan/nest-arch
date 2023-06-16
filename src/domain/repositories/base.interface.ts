@@ -1,9 +1,18 @@
-// // TODO: implement generic repository for all repositories
-// interface Filter<T> {
-//   [key: string]: T[keyof T];
-// }
+import type { DeepPartial, FindManyOptions, FindOneOptions } from 'typeorm';
 
-// interface IRepository<T> {
+export interface IBaseRepository<T> {
+  createOne: (data: DeepPartial<T>) => T;
+  createMany: (data: DeepPartial<T>[]) => T[];
+  save: (data: DeepPartial<T>) => Promise<T>;
+  saveMany: (data: DeepPartial<T>[]) => Promise<T[]>;
+  findOneById: (id: number) => Promise<T | null>;
+  findOne: (filterOption: FindOneOptions<T>) => Promise<T | null>;
+  findMany: (filterOption?: FindManyOptions<T>) => Promise<T[]>;
+  findWithRelations: (relations: FindManyOptions<T>) => Promise<T[]>;
+  remove: (data: T) => Promise<T>;
+  preload: (entityLike: DeepPartial<T>) => Promise<T | undefined>;
+}
+// export interface IBaseRepository<T> {
 //   findMany: ({ filter }: { filter?: Filter<T> }) => Promise<T[]>;
 //   findOne: ({ filter }: { filter?: Filter<T> }) => Promise<T[]>;
 //   createOne: ({ dto }: { dto: any }) => Promise<T>; // FIXME: add createDto type

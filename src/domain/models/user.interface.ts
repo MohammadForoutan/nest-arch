@@ -1,4 +1,4 @@
-export interface IUserModel {
+export interface IUserEntity {
   readonly id: number;
   username: string;
   password: string;
