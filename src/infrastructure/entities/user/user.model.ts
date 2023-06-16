@@ -1,4 +1,4 @@
-import type { IUserModel } from '@domain';
+import type { IUserEntity } from '@domain';
 import {
   Column,
   CreateDateColumn,
@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class UserModel implements IUserModel {
+export class UserEntity implements IUserEntity {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'user_id' })
   declare readonly id: number;
 
