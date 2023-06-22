@@ -1,13 +1,15 @@
 import type { IAuthController } from '@domain';
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { LocalRegisterDto } from './dto';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController implements IAuthController {
-  login() {
-    return { token: 'token' };
-  }
+  constructor(private readonly authService: AuthService) {}
 
-  register() {
-    return { token: 'token' };
+  @Post('register')
+  localRegister(@Body() dto: LocalRegisterDto) {
+    // FIXME: serialization and change Interface of method
+    return this.authService.localRegister(dto);
   }
 }

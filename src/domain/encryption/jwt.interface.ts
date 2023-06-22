@@ -1,12 +1,11 @@
-export interface IJwtServicePayload {
+import { JwtPayload } from 'jsonwebtoken';
+
+export interface IJwtPayload extends JwtPayload {
   username: string;
 }
 
 export interface IJwtService {
-  checkToken: (token: string) => Promise<any>;
-  createToken: (
-    payload: IJwtServicePayload,
-    secret: string,
-    expiresIn: string,
-  ) => string;
+  generateAccessToken: (data: IJwtPayload) => string;
+  generateRefreshToken: (data: IJwtPayload) => string;
+  verifyAccessToken: (token: string) => string | JwtPayload;
 }

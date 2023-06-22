@@ -1,4 +1,9 @@
+export interface ICompareSchema {
+  raw: string;
+  hash: string;
+}
+
 export interface IBcryptService {
-  hash: (hashString: string) => Promise<string>;
-  compare: (password: string, hashPassword: string) => Promise<boolean>;
+  hash: (raw: string) => Promise<string>;
+  compare: (rawAndHash: ICompareSchema) => Promise<boolean>;
 }

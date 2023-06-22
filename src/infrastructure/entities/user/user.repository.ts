@@ -2,21 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.model';
 import { Repository } from 'typeorm';
-import type { ICreateUserDto, IUserRepository } from '@domain';
+import type { IUserRepository } from '@domain';
+import { BaseRepository } from 'src/infrastructure/repository/base.abstract.repository';
 
 @Injectable()
-export class UserRepository implements IUserRepository {
+export class UserRepository
+  extends BaseRepository<UserEntity>
+  implements IUserRepository
+{
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
-  ) {}
-
-  findAll() {
-    return this.userRepository.find();
-  }
-
-  createOne(dto: ICreateUserDto): Promise<UserEntity> {
-    const user = this.userRepository.create(dto);
-    return this.userRepository.save(user);
+  ) {
+    super(userRepository);
   }
 }

@@ -1,4 +1,8 @@
+import { ILocalRegisterDto } from '../dtos';
+import { ILocalRegisterSerialization } from '../serializations';
+
 export interface IAuthController {
-  login: () => { token: string };
-  register: () => { token: string };
+  localRegister: (
+    dto: ILocalRegisterDto,
+  ) => Promise<ILocalRegisterSerialization>;
 }

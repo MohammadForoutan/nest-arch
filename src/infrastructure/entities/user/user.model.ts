@@ -9,13 +9,13 @@ import {
 
 @Entity()
 export class UserEntity implements IUserEntity {
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'user_id' })
+  @PrimaryGeneratedColumn({ type: 'bigint' })
   declare readonly id: number;
 
   @Column({ unique: true })
   declare username: string;
 
-  @Column()
+  @Column({ unique: true })
   declare email: string;
 
   @Column()
