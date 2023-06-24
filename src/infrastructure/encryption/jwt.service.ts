@@ -25,6 +25,12 @@ export class JwtService implements IJwtService {
     });
   }
 
+  public generateAccessAndRefreshToken(data: IJwtPayload) {
+    const accessToken = this.generateAccessToken(data);
+    const refreshToken = this.generateAccessToken(data);
+    return { accessToken, refreshToken };
+  }
+
   public verifyAccessToken(token: string): string | JwtPayload {
     const accessTokenSecret = this.configureService.getJwtSecret();
     return jwt.verify(token, accessTokenSecret);

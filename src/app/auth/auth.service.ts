@@ -1,4 +1,9 @@
-import type { IAuthService, ILocalLoginDto, ILocalRegisterDto } from '@domain';
+import type {
+  IAuthService,
+  ILocalLoginDto,
+  ILocalRegisterDto,
+  IUserEntity,
+} from '@domain';
 import { BcryptService, JwtService, UserEntity } from '@infrastructure';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { isEmail } from 'class-validator';
@@ -15,23 +20,22 @@ export class AuthService implements IAuthService {
   public async localRegister(dto: ILocalRegisterDto) {
     const hashPassword = await this.bcryptService.hash(dto.password);
 
-    const user = await this.userService.createOne({
+    await this.userService.createOne({
       ...dto,
       password: hashPassword,
     });
-
-    const accessToken = this.jwtService.generateAccessToken({
-      username: user.username,
-    });
-
-    const refreshToken = this.jwtService.generateRefreshToken({
-      username: user.username,
-    });
-
+    const { accessToken, refreshToken } =
+      this.jwtService.generateAccessAndRefreshToken({ username: dto.username });
     return { accessToken, refreshToken };
   }
 
-  public async localLogin(dto: ILocalLoginDto) {
+  public localLogin(user: IUserEntity) {
+    return this.jwtService.generateAccessAndRefreshToken({
+      username: user.username,
+    });
+  }
+
+  public async validateUser(dto: ILocalLoginDto): Promise<UserEntity> {
     const { password } = dto;
     const isDtoEmail = isEmail(dto.usernameOrEmail);
     let user: UserEntity | null;
@@ -55,14 +59,6 @@ export class AuthService implements IAuthService {
         'username/email or password is incorrect, pass',
       );
 
-    const accessToken = this.jwtService.generateAccessToken({
-      username: user.username,
-    });
-
-    const refreshToken = this.jwtService.generateRefreshToken({
-      username: user.username,
-    });
-
-    return { accessToken, refreshToken };
+    return user;
   }
 }

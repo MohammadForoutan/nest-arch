@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { ILocalLoginDto, ILocalRegisterDto } from '../dtos';
 import {
   ILocalLoginSerialization,
@@ -9,5 +10,5 @@ export interface IAuthController {
     dto: ILocalRegisterDto,
   ) => Promise<ILocalRegisterSerialization>;
 
-  localLogin: (dto: ILocalLoginDto) => Promise<ILocalLoginSerialization>;
+  localLogin: (req: Request, dto: ILocalLoginDto) => ILocalLoginSerialization;
 }
