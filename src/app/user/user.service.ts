@@ -10,16 +10,17 @@ interface IUsernameOrPassword {
 export class UserService implements IUserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  // YAGNI
-  // public findUserByEmail(email: string) {
-  //   return this.userRepository.findOne({ where: { email } });
-  // }
-  //
-  // public findUserByUsername(username: string) {
-  //   return this.userRepository.findOne({ where: { username } });
-  // }
+  public findUserByEmail(email: string) {
+    return this.userRepository.findOne({ where: { email } });
+  }
+
+  public findUserByUsername(username: string) {
+    return this.userRepository.findOne({ where: { username } });
+  }
 
   public findUserByEmailOrUsername({ username, email }: IUsernameOrPassword) {
+    if (!username && !email) return null;
+
     return this.userRepository.findOne({
       where: [{ username }, { email }],
     });

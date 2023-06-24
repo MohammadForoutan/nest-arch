@@ -1,5 +1,4 @@
 export interface ILocalLoginDto {
-  username?: string;
-  email?: string;
+  usernameOrEmail: string;
   password: string;
 }

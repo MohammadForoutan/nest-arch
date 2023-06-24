@@ -4,6 +4,7 @@ import { LoggerModule } from './infrastructure/logging/logger.module';
 import { ExceptionsModule } from './infrastructure/exceptions/exceptions.module';
 import { DatabaseModule } from './infrastructure/config/database/database.module';
 import { UserModule } from './app/user/user.module';
+import { AuthModule } from './app/auth/auth.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UserModule } from './app/user/user.module';
     LoggerModule,
     // MODULES
     UserModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

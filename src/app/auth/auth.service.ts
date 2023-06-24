@@ -1,10 +1,7 @@
 import type { IAuthService, ILocalLoginDto, ILocalRegisterDto } from '@domain';
-import { BcryptService, JwtService } from '@infrastructure';
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { BcryptService, JwtService, UserEntity } from '@infrastructure';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { isEmail } from 'class-validator';
 import { UserService } from '../user/user.service';
 
 @Injectable()
@@ -18,7 +15,10 @@ export class AuthService implements IAuthService {
   public async localRegister(dto: ILocalRegisterDto) {
     const hashPassword = await this.bcryptService.hash(dto.password);
 
-    const user = await this.userService.createOne({ ...dto, hashPassword });
+    const user = await this.userService.createOne({
+      ...dto,
+      password: hashPassword,
+    });
 
     const accessToken = this.jwtService.generateAccessToken({
       username: user.username,
@@ -33,10 +33,17 @@ export class AuthService implements IAuthService {
 
   public async localLogin(dto: ILocalLoginDto) {
     const { password } = dto;
-    const user = await this.userService.findUserByEmailOrUsername(dto);
+    const isDtoEmail = isEmail(dto.usernameOrEmail);
+    let user: UserEntity | null;
+
+    if (isDtoEmail)
+      user = await this.userService.findUserByEmail(dto.usernameOrEmail);
+    else user = await this.userService.findUserByUsername(dto.usernameOrEmail);
 
     if (user === null)
-      throw new NotFoundException('username/email or password is incorrect');
+      throw new UnauthorizedException(
+        'username/email or password is incorrect',
+      );
 
     const isPasswordCorrect = await this.bcryptService.compare({
       raw: password,
@@ -45,7 +52,7 @@ export class AuthService implements IAuthService {
 
     if (isPasswordCorrect === false)
       throw new UnauthorizedException(
-        'username/email or password is incorrect',
+        'username/email or password is incorrect, pass',
       );
 
     const accessToken = this.jwtService.generateAccessToken({

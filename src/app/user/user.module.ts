@@ -8,5 +8,6 @@ import { UserEntity, UserRepository } from '@infrastructure';
   imports: [TypeOrmModule.forFeature([UserEntity])],
   providers: [UserService, UserRepository],
   controllers: [UserController],
+  exports: [UserService, UserRepository],
 })
 export class UserModule {}
